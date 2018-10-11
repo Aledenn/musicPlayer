@@ -14,6 +14,7 @@ function $$(selector) {
 getMusicList(function (list) {
     musicList = list
     loadMusic(list[currIndex])
+    generateList(list)
 })
 
 audio.ontimeupdate = function () {
@@ -96,4 +97,15 @@ function getMusicList(callback) {
         console.log('网络异常');
     }
     xhr.send()
+}
+
+function generateList(){
+    let temp = document.createDocumentFragment()
+    musicList.forEach(function(musicObj){
+        let node = document.createElement('li')
+        node.innerHTML = musicObj.auther+'-'+musicObj.title
+        console.log(node);
+        temp.appendChild(node)
+    })
+    $('.list').appendChild(temp)
 }
