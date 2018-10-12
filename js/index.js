@@ -73,6 +73,31 @@ $('.musicbox .bar').onclick=function(e){
     audio.currentTime = audio.duration *percent
 }
 
+$('.musicbox .list').onclick = function(e){
+    console.log(e.target);
+    e.stopPropagation();
+    if(e.target.tagName.toLowerCase()==='li'){
+        for(let i =0 ; i<this.children.length;i++){
+            if(this.children[i]===e.target){
+                currIndex = i
+            }
+        }
+    }
+    console.log(currIndex);
+    loadMusic(musicList[currIndex])
+}
+
+// musicListContainer.onclick = function(e){
+//     if(e.target.tagName.toLowerCase() === 'li'){
+//       for(var i = 0; i < this.children.length; i++){
+//         if(this.children[i] === e.target){
+//           musicIndex = i
+//         }
+//       }
+//       console.log(musicIndex)
+//       loadMusic(musicList[musicIndex])
+//     }
+//   }
 function loadMusic(musicObj) {
     console.log('begin play', musicObj);
     audio.src = musicObj.src
